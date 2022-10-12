@@ -28,7 +28,7 @@ starwars %>% filter(species == "Human") %>% plot(mass ~ height, data = .)
 Now, change this to see the same plot for the Droids. 
 
 ```{r}
-
+starwars %>% filter(species == "Droid") %>% plot(mass ~ height, data = .)
 
 ```
 
@@ -37,20 +37,20 @@ How many characters are from each planet?
 
 ```{r}
 
-
-
 ```
 
 If you wanted to arrange this in descending order, what would you add to the pipe? 
 
 ```{r}
-
+count_data <- starwars%>% group_by(homeworld) %>% summarize(n_count = n()) %>% arrange(desc(n_count))
+glimpse(count_data)
 ```
 
 Find the average height for each eye color.
 
 ```{r}
-
+count_data <- starwars%>% group_by(eye_color) %>% summarize(mean(height))
+glimpse(count_data)
 
 ```
 
@@ -58,6 +58,7 @@ What's with the NAs? Filter down to just brown eyes find out.
 
 
 ```{r}
+
 ```
 
 Okay, so we have missing data here. Try summarising with `na.omit(height)` instead of just `height` or adding `na.rm = T` to the mean function inside summarize. 
