@@ -58,7 +58,8 @@ What's with the NAs? Filter down to just brown eyes find out.
 
 
 ```{r}
-
+count_data <- starwars%>% group_by(eye_color) %>% summarize(mean(height))
+glimpse(count_data)
 ```
 
 Okay, so we have missing data here. Try summarising with `na.omit(height)` instead of just `height` or adding `na.rm = T` to the mean function inside summarize. 
